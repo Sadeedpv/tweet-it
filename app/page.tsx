@@ -1,36 +1,33 @@
-'use client'
+'use client';
 
 import InputField from './components/InputField';
 import Posts from './components/Posts';
-import './globals.css'
-import axios from "axios"
-import { useEffect, useState } from 'react';
+import './globals.css';
+import useSWR from 'swr';
+import ReactLoading from 'react-loading';
+
+const fetcher = async (url:string) =>{
+  const response = await fetch(url);
+  const data = await response.json();
+  return data.posts;
+}
 
 
 export default function Home() {
+const { data: posts, error } = useSWR('/api/getPosts', fetcher, {refreshInterval:1000});
+console.log(posts)
 
-  const [posts, setPosts] = useState([]);
-
-  const fetchData = async () =>{
-    try{
-      const response = await axios.get('/api/getPosts');
-      setPosts(response.data.posts);
-    }catch(err){
-      console.log(err)
-    }
+  if (error) {
+    // Handle error state
+    return <div>Error occurred: {error.message}</div>;
   }
-  useEffect(() =>{
-    fetchData();
-    const intervalId = setInterval(() => {
-      fetchData();
-    }, 10000); // Revalidate data every 10 seconds
 
-    return () => {
-      clearInterval(intervalId);
-    };
-
-
-  },[])
+  if (!posts) {
+    // Handle loading state
+    return <div className='flex items-center justify-center flex-col h-[400px] w-full'>
+      <ReactLoading type='spin' height={45} width={45} />
+    </div>;
+  }
 
   return (
 
