@@ -14,7 +14,7 @@ const fetcher = async (url:string) =>{
 
 
 export default function Home() {
-const { data: posts, error } = useSWR('/api/getPosts', fetcher, {refreshInterval:1000});
+const { data: posts, error } = useSWR(`/api/getPosts`, fetcher, {refreshInterval:1000});
 console.log(posts)
 
   if (error) {
