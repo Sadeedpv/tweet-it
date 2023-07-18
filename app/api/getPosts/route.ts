@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '../../../prisma/client'
-import { NextApiResponse } from 'next';
 
 
 export async function GET(request:NextRequest){
-    const posts = await prisma.Post.findMany({
+    const posts = await prisma.post.findMany({
         include: {
             user: true
         },
