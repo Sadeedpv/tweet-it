@@ -17,7 +17,7 @@ export default () => {
         e.preventDefault();
         setPost('');
         setDisabled(true);
-        toast('Posting..')
+        toast('Posting...')
         await axios.post("/api/addPosts", {
             title:post,
             email:session?.user?.email,
