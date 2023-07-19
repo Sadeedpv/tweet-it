@@ -19,7 +19,16 @@ model Post {
   published Boolean  @default(false)
   user     User     @relation(fields: [userId], references: [id])
   userId   String
+  likes    Likes[]
 
+}
+
+model Likes{
+  id       String      @id @default(cuid())
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId   String
+  post     Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId   Int
 }
 
 
@@ -68,6 +77,7 @@ model User {
   posts         Post[]
   accounts      Account[]
   sessions      Session[]
+  likes         Likes[]
 }
 
 model VerificationToken {

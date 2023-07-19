@@ -17,6 +17,15 @@ const authOptions = {
           })
       // You can add more providers here
     ],
+    callbacks: {
+      session: async ({ session, token, user }) => {
+        if (session?.user) {
+          session.user.id = user.id;
+        }
+        return session;
+      },
+        
+    }
   
     // Use Prisma adapter for database integration
 };

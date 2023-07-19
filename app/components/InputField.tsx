@@ -18,7 +18,7 @@ export default () => {
         setPost('');
         setDisabled(true);
         toast('Posting..')
-        await axios.post("/api/posts", {
+        await axios.post("/api/addPosts", {
             title:post,
             email:session?.user?.email,
 

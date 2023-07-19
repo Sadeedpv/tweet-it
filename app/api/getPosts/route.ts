@@ -5,7 +5,8 @@ import prisma from '../../../prisma/client'
 export async function GET(request:NextRequest){
     const posts = await prisma.post.findMany({
         include: {
-            user: true
+            user: true,
+            likes:true
         },
         orderBy:{
             createdAt: 'desc'
