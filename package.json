@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "node_modules/next/dist/bin/next start -p $PORT",
     "lint": "next lint",
-    "postinstall": "npx prisma generate"
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^1.0.1",
