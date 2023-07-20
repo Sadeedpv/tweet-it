@@ -7,7 +7,9 @@ import useSWR from 'swr';
 import ReactLoading from 'react-loading';
 
 const fetcher = async (url:string) =>{
-  const response = await fetch(url);
+  const response = await fetch(url, {next:{
+    revalidate:10
+  }});
   const data = await response.json();
   return data.posts;
 }
