@@ -7,7 +7,7 @@ import useSWR from 'swr';
 import ReactLoading from 'react-loading';
 
 const fetcher = async (url:string) =>{
-  const response = await fetch(url);
+  const response = await fetch(url,{cache:'no-store'});
   const data = await response.json();
   return data.posts;
 }

@@ -37,7 +37,9 @@ export async function POST(request:NextRequest) {
     // Disconnect prisma
     await prisma.$disconnect();
     try{
-        return NextResponse.json({post},{status:200})
+        let response = NextResponse.json({post},{status:200});
+        response.headers.set("Cache-Control", "s-maxage=1, stale-while-revalidate")
+        return response;
     }catch(error){
         return NextResponse.json({error}, {status:500})
     }

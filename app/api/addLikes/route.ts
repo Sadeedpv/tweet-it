@@ -44,7 +44,9 @@ export async function POST(req:NextRequest) {
             })
             // Disconnect prisma
             await prisma.$disconnect();
-            return NextResponse.json({addHeart, status:'liking'}, {status:200})
+            let response = NextResponse.json({addHeart, status:'liking'}, {status:200});
+            response.headers.set("Cache-Control", "s-maxage=1, stale-while-revalidate")
+            return response;
         }
 
     }catch(err){
