@@ -39,15 +39,13 @@ export default () => {
     },[session])
 
     return (
-        <form className="bg-white my-8 py-8 rounded-md flex items-center justify-center "
+        <form className="bg-white my-4 py-8 rounded-md flex items-center justify-center "
         onSubmit={handleSubmit}
         >
-            <div className="flex flex-col my-4 flex-1 mx-14  md:mx-24">
+            <div className="flex flex-col mt-4 flex-1 mx-6 lg:mx-14">
                 <textarea 
                 className={`p-4  text-lg rounded-md my-1  bg-gray-200  ${post.length > 300? 'text-red-700' :'text-black'}`}
                 placeholder="What's on your mind?"
-                rows={4}
-                cols={38}
                 value={post}
                 onChange={(e) =>{
                     setPost(e.target.value)

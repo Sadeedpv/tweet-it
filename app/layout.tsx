@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Provider>
-        <body className={`${roboto.variable} flex flex-col items-center bg-gray-300 mx-8 md:mx-80`}>
+        <body className={`${roboto.variable} flex flex-col items-center bg-gray-300 mx-8 lg:mx-80`}>
           <Toaster />
           <Header />
           {children}
