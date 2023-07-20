@@ -32,6 +32,8 @@ export async function POST(req:NextRequest) {
                     id:heart.id
                 }
             })
+            // Disconnect prisma
+            await prisma.$disconnect();
             return NextResponse.json({deleteHeart, status:'unLiking'},{status:200})
         }else{
             const addHeart = await prisma.likes.create({
@@ -40,6 +42,8 @@ export async function POST(req:NextRequest) {
                     postId:postId
                 }
             })
+            // Disconnect prisma
+            await prisma.$disconnect();
             return NextResponse.json({addHeart, status:'liking'}, {status:200})
         }
 

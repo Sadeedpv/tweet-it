@@ -20,7 +20,7 @@ const Posts =  ({posts}:any) => {
                 return;
             }
         })
-    },[posts])
+    },[])
 
     // This is a function to addlikes
     const handleLove = async () =>{

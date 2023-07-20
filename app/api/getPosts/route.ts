@@ -11,7 +11,9 @@ export async function GET(request:NextRequest){
         orderBy:{
             createdAt: 'desc'
         }
-    })
+    });
+    // Disconnect prisma
+    await prisma.$disconnect();
     try{
         // return all the posts
         let response = NextResponse.json({posts},{status:200});

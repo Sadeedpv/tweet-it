@@ -7,19 +7,14 @@ import useSWR from 'swr';
 import ReactLoading from 'react-loading';
 
 const fetcher = async (url:string) =>{
-  const response = await fetch(url, 
-    {
-      cache:'no-store'
-    }
-    
-  );
+  const response = await fetch(url);
   const data = await response.json();
   return data.posts;
 }
 
 
 export default function Home() {
-const { data: posts, error } = useSWR(`/api/getPosts`, fetcher, {refreshInterval:100});
+const { data: posts, error } = useSWR(`/api/getPosts`, fetcher, {refreshInterval:1000});
 console.log(posts)
 
   if (error) {
