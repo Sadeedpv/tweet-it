@@ -5,12 +5,11 @@ import { useEffect, useState } from 'react';
 import {BsBalloonHeartFill} from "react-icons/bs"
 import axios from 'axios'
 import { toast } from 'react-hot-toast';
-import { useSWRConfig } from 'swr';
+import { mutate } from 'swr';
 
 
 const Posts =  ({posts}:any) => {
     const {data:session} = useSession();
-    const {mutate} = useSWRConfig();
     const [love, setLove] = useState('text-gray-400');
 
     // If the user has already liked the post, unlike else like
@@ -19,8 +18,6 @@ const Posts =  ({posts}:any) => {
             if (post['userId'] === session?.user?.id){
                 setLove('text-red-600')
                 return;
-            }else{
-                setLove('text-gray-400')
             }
         })
     },[posts])

@@ -4,15 +4,13 @@ import axios from "axios";
 import {  useEffect, useLayoutEffect, useState } from "react";
 import {useSession} from 'next-auth/react';
 import toast from 'react-hot-toast';
-import {useSWRConfig } from 'swr';
-
+import {mutate} from 'swr'
 
 
 export default () => {
     const [post, setPost] = useState('');
     const [disabled, setDisabled] = useState(true);
     const {data:session} = useSession();
-    const {mutate} = useSWRConfig();
 
     // handle submit function
     const handleSubmit =  async (e:React.FormEvent) =>{
@@ -24,7 +22,7 @@ export default () => {
             title:post,
             email:session?.user?.email,
 
-          }).then(() =>{
+          }).then((res) =>{
             setDisabled(false);
             toast.success('Successfully posted')
             mutate('/api/getPosts');

@@ -16,7 +16,6 @@ model Post {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   title     String   @db.VarChar(300)
-  published Boolean  @default(false)
   user     User     @relation(fields: [userId], references: [id])
   userId   String
   likes    Likes[]

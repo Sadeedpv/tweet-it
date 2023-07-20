@@ -14,7 +14,9 @@ export async function GET(request:NextRequest){
     })
     try{
         // return all the posts
-        return NextResponse.json({posts},{status:200})
+        let response = NextResponse.json({posts},{status:200});
+        response.headers.set("Cache-Control", "s-maxage=1, stale-while-revalidate")
+        return response;
     }catch(error){
         return NextResponse.json(error, {status:500});
     }
