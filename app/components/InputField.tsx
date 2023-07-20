@@ -4,7 +4,7 @@ import axios from "axios";
 import {  useEffect, useLayoutEffect, useState } from "react";
 import {useSession} from 'next-auth/react';
 import toast from 'react-hot-toast';
-import {mutate} from 'swr';
+import {useSWRConfig } from 'swr';
 
 
 
@@ -12,6 +12,7 @@ export default () => {
     const [post, setPost] = useState('');
     const [disabled, setDisabled] = useState(true);
     const {data:session} = useSession();
+    const {mutate} = useSWRConfig();
 
     // handle submit function
     const handleSubmit =  async (e:React.FormEvent) =>{
