@@ -4,6 +4,7 @@ import axios from "axios";
 import {  useEffect, useLayoutEffect, useState } from "react";
 import {useSession} from 'next-auth/react';
 import toast from 'react-hot-toast';
+import {mutate} from 'swr';
 
 
 
@@ -25,6 +26,7 @@ export default () => {
           }).then(() =>{
             setDisabled(false);
             toast.success('Successfully posted')
+            mutate('/api/getPosts');
           }).catch((err) =>{
             // toast.error(err)
             toast.error(err.response.data.error)

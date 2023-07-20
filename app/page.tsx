@@ -5,7 +5,6 @@ import Posts from './components/Posts';
 import './globals.css';
 import useSWR from 'swr';
 import ReactLoading from 'react-loading';
-import { useEffect, useState } from 'react';
 
 const fetcher = async (url:string) =>{
   const response = await fetch(url, {cache:'no-store'});
@@ -25,7 +24,7 @@ const { data: posts, error } = useSWR(`/api/getPosts`, fetcher, {refreshInterval
   if (!posts) {
     // Handle loading state
     return <div className='flex items-center justify-center flex-col h-[400px] w-full'>
-      <ReactLoading type='spin' height={45} width={45} />
+      <ReactLoading type='cylon' height={65} width={65} />
     </div>;
   }
 

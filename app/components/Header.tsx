@@ -6,7 +6,12 @@ import { useSession,signIn,signOut } from 'next-auth/react'
 
 
 export default () => {
-  const {data:session} = useSession();
+  const {data:session, status} = useSession();
+  console.log(status)
+
+  if (status === "loading"){
+    return;
+  }
 
     return (
         <div className="
