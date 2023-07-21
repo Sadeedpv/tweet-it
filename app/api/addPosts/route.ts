@@ -34,11 +34,11 @@ export async function POST(request:NextRequest) {
             userId
         }
     })
-    // Disconnect prisma
-    await prisma.$disconnect();
     try{
         let response = NextResponse.json({post},{status:200});
-        response.headers.set("Cache-Control", "s-maxage=1, stale-while-revalidate")
+        response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+        response.headers.set('Pragma', 'no-cache');
+        response.headers.set('Expires', '0');
         return response;
     }catch(error){
         return NextResponse.json({error}, {status:500})
