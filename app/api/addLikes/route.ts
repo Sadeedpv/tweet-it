@@ -5,7 +5,9 @@ import prisma from '../../../prisma/client'
 
 export async function POST(req:NextRequest) {
     // Check if there is a user logged-in
-    // Add like
+    await prisma.$connect()
+    .then(() => console.log("Connected to DB"))
+    .catch((error:any) => console.log("DB Connection Error: ", error));
     const data = await req.json();
     const user = await prisma.user.findUnique({
         where:{
@@ -32,9 +34,12 @@ export async function POST(req:NextRequest) {
                     id:heart.id
                 }
             })
-            // Disconnect prisma
-            await prisma.$disconnect();
-            return NextResponse.json({deleteHeart, status:'unLiking'},{status:200})
+            prisma.$disconnect();
+            let response = NextResponse.json({deleteHeart, status:'unLiking'},{status:200});
+            response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+            response.headers.set('Pragma', 'no-cache');
+            response.headers.set('Expires', '0');
+            return response; 
         }else{
             const addHeart = await prisma.likes.create({
                 data:{
@@ -42,6 +47,7 @@ export async function POST(req:NextRequest) {
                     postId:postId
                 }
             })
+            prisma.$disconnect();
             let response = NextResponse.json({addHeart, status:'liking'}, {status:200});
             response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
             response.headers.set('Pragma', 'no-cache');

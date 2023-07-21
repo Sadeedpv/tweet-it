@@ -6,6 +6,9 @@ import prisma from '../../../prisma/client';
 // Function
 
 export async function POST(request:NextRequest) {
+    await prisma.$connect()
+    .then(() => console.log("Connected to DB"))
+    .catch((error:any) => console.log("DB Connection Error: ", error));
     const data = await request.json();
     const title = data.title;
     const user = await prisma.user.findUnique({
@@ -34,6 +37,7 @@ export async function POST(request:NextRequest) {
             userId
         }
     })
+    prisma.$disconnect();
     try{
         let response = NextResponse.json({post},{status:200});
         response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');

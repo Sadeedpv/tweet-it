@@ -3,6 +3,9 @@ import prisma from '../../../prisma/client'
 
 
 export async function GET(request:NextRequest){
+    await prisma.$connect()
+    .then(() => console.log("Connected to DB"))
+    .catch((error:any) => console.log("DB Connection Error: ", error));
     const posts = await prisma.post.findMany({
         include: {
             user: true,
@@ -12,6 +15,7 @@ export async function GET(request:NextRequest){
             createdAt: 'desc'
         }
     });
+    prisma.$disconnect();
     try{
         // return all the posts
         let response = NextResponse.json({posts},{status:200});
@@ -21,6 +25,7 @@ export async function GET(request:NextRequest){
         response.headers.set('Expires', '0');
         return response;
     }catch(error){
+        console.log("GET Request Error:", error); // Logging any potential error
         return NextResponse.json(error, {status:500});
     }
 }
