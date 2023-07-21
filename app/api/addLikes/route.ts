@@ -1,11 +1,12 @@
 // Adding like handler
 
 import { NextRequest, NextResponse } from 'next/server'
-import prisma from '../../../prisma/client'
+import getPrismaClient from '../../../prisma/client'
 
 export async function POST(req:NextRequest) {
     // Check if there is a user logged-in
     // Add like
+    const prisma = getPrismaClient();
     const data = await req.json();
     const user = await prisma.user.findUnique({
         where:{

@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import prisma from '../../../prisma/client'
+import getPrismaClient from '../../../prisma/client'
 
 
 export async function GET(request:NextRequest){
+    const prisma = getPrismaClient();
     const posts = await prisma.post.findMany({
         include: {
             user: true,
