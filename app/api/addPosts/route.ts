@@ -1,12 +1,11 @@
 // Addposts to prisma backend
 
 import { NextResponse, NextRequest } from 'next/server';
-import getPrismaClient from '../../../prisma/client';
+import prisma from '../../../prisma/client';
 
 // Function
 
 export async function POST(request:NextRequest) {
-    const prisma = getPrismaClient();
     const data = await request.json();
     const title = data.title;
     const user = await prisma.user.findUnique({
