@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from 'next/server'
+import {  NextResponse } from 'next/server'
 import prisma from '../../../prisma/client'
 
 
-export async function GET(request:Request){
+export async function GET(){
     await prisma.$connect()
     .then(() => console.log("Connected to DB"))
     .catch((error:any) => console.log("DB Connection Error: ", error));
