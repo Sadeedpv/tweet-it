@@ -4,6 +4,7 @@ import { Roboto } from 'next/font/google'
 import Provider from './components/Provider'
 import Header from './components/Header'
 import { Toaster } from 'react-hot-toast'
+import Footer from './components/Footer'
 
 const roboto = Roboto({ 
   subsets: ['latin'],
@@ -13,7 +14,7 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title: 'Tweet-it',
-  description: 'Tweet-it is a simple alternative to twitter(and threads) to tweet your thoughts.',
+  description: 'Twitter who!?',
   keywords:'twitter, twitter-clone, twitter-alternative, tweet, tweet-it, tweetit',
   viewport:"initial-scale=1.0, width=device-width"
 }
@@ -26,10 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Provider>
-        <body className={`${roboto.variable} flex flex-col items-center bg-gray-300 mx-8 lg:mx-80`}>
+        <body className={`${roboto.variable} flex flex-col items-center bg-gray-300 mx-8 min-h-screen lg:mx-80`}>
           <Toaster />
           <Header />
           {children}
+          <Footer />
         </body>
       </Provider>
     </html>
