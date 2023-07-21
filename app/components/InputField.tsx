@@ -25,7 +25,7 @@ export default () => {
           }).then((res) =>{
             setDisabled(false);
             toast.success('Successfully posted')
-            mutate('/api/getPosts');
+            mutate('/api/addPosts');
           }).catch((err) =>{
             // toast.error(err)
             toast.error(err.response.data.error)

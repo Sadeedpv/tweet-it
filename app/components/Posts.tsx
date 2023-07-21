@@ -30,7 +30,7 @@ const Posts =  ({posts}:any) => {
             email:session?.user?.email
         }).then((res) =>{
             console.log(res.data.status);
-            mutate('api/getPosts')
+            mutate('api/addPosts')
             res.data.status === 'liking'? setLove('text-red-600'):setLove('text-gray-400')
         }).catch((err) =>{
             console.log(err)
