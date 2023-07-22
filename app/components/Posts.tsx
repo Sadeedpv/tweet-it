@@ -6,21 +6,46 @@ import {BsBalloonHeartFill} from "react-icons/bs"
 import axios from 'axios'
 import { toast } from 'react-hot-toast';
 import { mutate } from 'swr';
+import { Post } from '@prisma/client';
 
+// Interface for posts
+interface Posts {
+    id:string,
+    title:string,
+    userId:string,
+    likes:{
+        id:string,
+        userId:string,
+        postId:string
+    }[],
+    user?:{
+        id:string,
+        name:string,
+        image:string,
+        email:string
+    }
+}
 
-const Posts =  ({posts}:any) => {
+interface Like{
+    id:string,
+    userId:string,
+    postId:string
+}
+
+const Posts =  ({posts}:{posts:Posts}) => {
+    console.log(posts)
     const {data:session} = useSession();
     const [love, setLove] = useState('text-gray-400');
 
     // If the user has already liked the post, unlike else like
     useEffect(() =>{
-        posts.likes.map((post:any)=>{
+        posts.likes?.map((post:Like)=>{
             if (post['userId'] === session?.user?.id){
                 setLove('text-red-600')
                 return;
             }
         })
-    },[])
+    },[posts])
 
     // This is a function to addlikes
     const handleLove = async () =>{
@@ -56,7 +81,7 @@ const Posts =  ({posts}:any) => {
                 size={22} 
                 className={`cursor-pointer ${love}`}
                 onClick={handleLove}
-                /> <p className='font-bold text-slate-700'>{posts.likes.length} Likes</p></div>
+                /> <p className='font-bold text-slate-700'>{posts.likes?.length} {posts.likes.length > 1?'Likes':'Like'}</p></div>
             </div>
 
         </div>
