@@ -33,7 +33,7 @@ export default ({post}:{post:Post}) => {
         <div className="flex flex-col bg-white my-8 py-8 rounded-md justify-center pl-2 lg:pl-6">
             <div className="flex gap-5 items-center">
                 <Image src={post?.user?.image || ''} alt="GitHub user profile"
-                    height={64} width={64} priority
+                    height={64} width={64}
                     className="w-12 rounded-full ml-3 cursor-pointer"
                 />
             <p className="font-bold text-lg">{post?.user?.name}</p>

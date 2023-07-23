@@ -17,7 +17,7 @@ export default () => {
         e.preventDefault();
         setPost('');
         setDisabled(true);
-        toast('Posting...')
+        toast('Posting...');
         await axios.post("/api/addPosts", {
             title:post,
             email:session?.user?.email,
@@ -27,7 +27,7 @@ export default () => {
             toast.success('Successfully posted')
             mutate('/api/addPosts');
           }).catch((err) =>{
-            // toast.error(err)
+            setDisabled(false)
             toast.error(err.response.data.error)
           })
     }
@@ -45,10 +45,10 @@ export default () => {
         >
             <div className="flex flex-col mt-4 flex-1 mx-6 lg:mx-14">
                 <textarea 
-                className={`p-4  text-lg rounded-md my-1  bg-gray-200  ${post.length > 300? 'text-red-700' :'text-black'}`}
+                className={`p-4  text-lg rounded-md my-1  bg-gray-200  ${post.length > 300? 'text-red-700 outline-red-700' :'text-black outline-none'}`}
                 placeholder="What's on your mind?"
                 value={post}
-                onChange={(e) =>{
+                onChange={(e:React.ChangeEvent<HTMLTextAreaElement>) =>{
                     setPost(e.target.value)
                     if (post.length > 300){
                         setDisabled(true);

@@ -1,5 +1,7 @@
 'use client';
+import AddComment from '@/app/components/AddComment';
 import SinglePost from '@/app/components/singlePost';
+import Comment from '@/app/components/Comment';
 import { baseUrl } from '@/constants/baseUrl';
 import { toast } from 'react-hot-toast';
 import ReactLoading from 'react-loading';
@@ -35,6 +37,10 @@ export default ({params}:Props) => {
     return (
         <div className='w-full'>
             <SinglePost post={post} />
+            <AddComment id={Number(params.id)}/>
+            {post?.comments.map((comment:any, index:number)=>{
+              return <Comment key={index} comment={comment}/>
+            })}
         </div>
     )
 }

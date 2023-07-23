@@ -11,7 +11,11 @@ export async function GET(request:Request){
         }, include:{
             user: true,
             likes: true,
-            comments: true
+            comments: {
+                include:{
+                    user:true
+                }
+            }
         }
     });
 

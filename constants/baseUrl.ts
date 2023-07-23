@@ -1,1 +1,1 @@
-export const baseUrl = 'https://twitthread.vercel.app';
+export const baseUrl = process.env.NODE_ENV === "production" ? 'https://twitthread.vercel.app':'http://localhost:3000';
