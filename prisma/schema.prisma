@@ -19,7 +19,17 @@ model Post {
   user     User     @relation(fields: [userId], references: [id])
   userId   String
   likes    Likes[]
+  comments Comments[]
 
+}
+
+model Comments{
+  id        String      @id @default(cuid())
+  text      String      @db.VarChar(300)
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  post      Post        @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    Int
 }
 
 model Likes{
@@ -77,6 +87,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   likes         Likes[]
+  comments      Comments[]
 }
 
 model VerificationToken {

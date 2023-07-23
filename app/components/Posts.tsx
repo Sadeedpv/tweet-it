@@ -7,6 +7,7 @@ import axios from 'axios'
 import { toast } from 'react-hot-toast';
 import { mutate } from 'swr';
 import { Post } from '@prisma/client';
+import Link from 'next/link';
 
 // Interface for posts
 interface Posts {
@@ -17,6 +18,12 @@ interface Posts {
         id:string,
         userId:string,
         postId:string
+    }[],
+    comments:{
+        id:string,
+        text:string,
+        userId:string,
+        postId:string,
     }[],
     user?:{
         id:string,
@@ -76,7 +83,7 @@ const Posts =  ({posts}:{posts:Posts}) => {
                 {posts.title}
             </div>
             <div className="flex gap-5 items-center pl-4">
-                <p className='font-bold text-slate-700'>2 Comments</p>
+                <p className='font-bold text-slate-700'><Link href={`/Posts/${posts.id}`}> {posts.comments.length} Comments</Link></p>
                 <div className='flex items-center gap-1'><BsBalloonHeartFill 
                 size={22} 
                 className={`cursor-pointer ${love}`}

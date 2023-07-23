@@ -33,8 +33,7 @@ export default () => {
                 </button>
                 {session?
                     <Image src={session?.user?.image || ''} alt="GitHub user profile"
-                    height={64} width={64} priority
-                    className="w-12 rounded-full ml-3 cursor-pointer"
+                    height={64} width={64} className="w-12 rounded-full ml-3 cursor-pointer"
                         />:<></>
                 }
 
