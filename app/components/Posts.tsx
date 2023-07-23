@@ -8,38 +8,39 @@ import { toast } from 'react-hot-toast';
 import { mutate } from 'swr';
 import { Post } from '@prisma/client';
 import Link from 'next/link';
+import { Like, Postprops } from '@/constants/types';
 
 // Interface for posts
-interface Posts {
-    id:string,
-    title:string,
-    userId:string,
-    likes:{
-        id:string,
-        userId:string,
-        postId:string
-    }[],
-    comments:{
-        id:string,
-        text:string,
-        userId:string,
-        postId:string,
-    }[],
-    user?:{
-        id:string,
-        name:string,
-        image:string,
-        email:string
-    }
-}
+// type Posts = {
+//     id:string,
+//     title:string,
+//     userId:string,
+//     likes:{
+//         id:string,
+//         userId:string,
+//         postId:string
+//     }[],
+//     comments:{
+//         id:string,
+//         text:string,
+//         userId:string,
+//         postId:string,
+//     }[],
+//     user?:{
+//         id:string,
+//         name:string,
+//         image:string,
+//         email:string
+//     }
+// }
 
-interface Like{
-    id:string,
-    userId:string,
-    postId:string
-}
+// type Like = {
+//     id:string,
+//     userId:string,
+//     postId:string
+// }
 
-const Posts =  ({posts}:{posts:Posts}) => {
+const Posts =  ({posts}:{posts:Postprops}) => {
     console.log(posts)
     const {data:session} = useSession();
     const [love, setLove] = useState('text-gray-400');

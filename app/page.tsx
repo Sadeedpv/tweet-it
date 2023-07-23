@@ -5,6 +5,8 @@ import Posts from './components/Posts';
 import './globals.css';
 import useSWR from 'swr';
 import ReactLoading from 'react-loading';
+import { ASCII_text } from '@/constants/baseUrl';
+import { Postprops } from '@/constants/types';
 
 const fetcher = async (url:string) =>{
   const response = await fetch(url,{cache:'no-store'});
@@ -17,7 +19,7 @@ export default function Home() {
 const { data: posts, error } = useSWR(`/api/addPosts`, fetcher, {
   refreshInterval:1000
 });
-console.log(posts)
+console.log(ASCII_text)
 
   if (error) {
     // Handle error state
@@ -35,7 +37,7 @@ console.log(posts)
 
     <main className='w-full'>
       <InputField />
-      {posts.map((post:any) =>{
+      {posts.map((post:Postprops) =>{
         return <Posts key={post.id} posts={post} />
       })}
     </main>

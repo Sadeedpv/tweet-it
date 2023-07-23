@@ -1,7 +1,8 @@
 
+import { Commentprops } from "@/constants/types"
 import Image from "next/image"
 
-export default ({comment}:any) => {
+export default ({comment}:{comment:Commentprops}) => {
     console.log('comment', comment)
     return (
         <div className="flex flex-col bg-white my-8 py-8 rounded-md justify-center pl-2 lg:pl-6">

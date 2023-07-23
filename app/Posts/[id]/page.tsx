@@ -6,6 +6,7 @@ import { baseUrl } from '@/constants/baseUrl';
 import { toast } from 'react-hot-toast';
 import ReactLoading from 'react-loading';
 import useSWR from 'swr';
+import { Commentprops } from '@/constants/types';
 
 type Props = {
     params: {
@@ -38,7 +39,7 @@ export default ({params}:Props) => {
         <div className='w-full'>
             <SinglePost post={post} />
             <AddComment id={Number(params.id)}/>
-            {post?.comments.map((comment:any, index:number)=>{
+            {post?.comments.map((comment:Commentprops, index:number)=>{
               return <Comment key={index} comment={comment}/>
             })}
         </div>

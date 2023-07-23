@@ -6,7 +6,7 @@ import Header from './components/Header'
 import { Toaster } from 'react-hot-toast'
 import Footer from './components/Footer'
 
-const roboto = Roboto({ 
+export const roboto = Roboto({ 
   subsets: ['latin'],
   weight: ['400', '700'],
   variable: '--font-roboto'
