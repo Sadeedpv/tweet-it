@@ -23,20 +23,20 @@ const fetcher = async (url:string) =>{
 export default ({params}:Props) => {
 
     const { data: post, error } = useSWR(`${baseUrl}/api/getPosts?id=${params.id}`, fetcher, {
-        refreshInterval:1000
+        refreshInterval:5000
       });
     if (error){
         toast.error("Error loading post")!
     }
     if (!post) {
         // Handle loading state
-        return <div className='flex items-center justify-center flex-col h-[400px] w-full'>
+        return <div className='loading'>
           <ReactLoading type='cylon' height={65} width={65} />
         </div>;
       }
 
     return (
-        <div className='w-full'>
+        <div className='container'>
             <SinglePost post={post} />
             <AddComment id={Number(params.id)}/>
             {post?.comments.map((comment:Commentprops, index:number)=>{

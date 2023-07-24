@@ -2,7 +2,6 @@
 
 import InputField from './components/InputField';
 import Posts from './components/Posts';
-import './globals.css';
 import useSWR from 'swr';
 import ReactLoading from 'react-loading';
 import { ASCII_text } from '@/constants/baseUrl';
@@ -17,7 +16,7 @@ const fetcher = async (url:string) =>{
 
 export default function Home() {
 const { data: posts, error } = useSWR(`/api/addPosts`, fetcher, {
-  refreshInterval:1000
+  refreshInterval:5000
 });
 console.log(ASCII_text)
 
@@ -28,14 +27,14 @@ console.log(ASCII_text)
 
   if (!posts) {
     // Handle loading state
-    return <div className='flex items-center justify-center flex-col h-[400px] w-full'>
+    return <div className='loading'>
       <ReactLoading type='cylon' height={65} width={65} />
     </div>;
   }
 
   return (
 
-    <main className='w-full'>
+    <main className='container'>
       <InputField />
       {posts.map((post:Postprops) =>{
         return <Posts key={post.id} posts={post} />

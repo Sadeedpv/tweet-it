@@ -2,28 +2,64 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+.container{
+  @apply w-full;
+}
+
+.image{
+  @apply w-12 rounded-full ml-3 cursor-pointer;
+}
+
+.loading{
+  @apply flex items-center justify-center flex-col h-[400px] w-full;
+}
+
+.content{
+  @apply text-left py-5 break-words p-4;
+}
+
+.innerContainer{
+  @apply flex items-center;
+}
+
+.title{
+  @apply font-bold;
+}
+
+.button{
+  @apply text-base rounded-md px-5 py-1 text-white font-normal cursor-pointer;
+}
+
+.logo{
+  @apply font-extrabold text-xl cursor-pointer;
+}
+
+.subText{
+  @apply font-bold text-slate-700;
+}
+
+.upperContainer{
+  @apply flex flex-col bg-white my-8 py-8 rounded-md justify-center pl-2 lg:pl-6;
+}
+
+.bottomContainer{
+  @apply flex gap-5 items-center pl-4;
+}
+
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-  }
-  
-  html,
-  body {
-    max-width: 100vw;
-    overflow-x: hidden;
-  }
-  
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-  
-  .page-mask {
-    background: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
+box-sizing: border-box;
+padding: 0;
+margin: 0;
+}
+
+html,
+body {
+max-width: 100vw;
+overflow-x: hidden;
+}
+
+a {
+color: inherit;
+text-decoration: none;
+}
+

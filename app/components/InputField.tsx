@@ -40,7 +40,8 @@ export default () => {
     },[session])
 
     return (
-        <form className="bg-white my-4 py-8 rounded-md flex items-center justify-center "
+        <form
+        className="bg-white my-4 py-8 rounded-md flex items-center justify-center"
         onSubmit={handleSubmit}
         >
             <div className="flex flex-col mt-4 flex-1 mx-6 lg:mx-14">
@@ -60,7 +61,7 @@ export default () => {
                         {post.length}/300
                     </p>
                     <button
-                    className={`cursor-pointer text-base rounded-md px-5 py-1 text-white ${disabled?'bg-slate-500':'bg-teal-600 hover:bg-teal-700'} font-normal`}
+                    className={`button ${disabled?'bg-slate-500':'bg-teal-600 hover:bg-teal-700'}`}
                     type="submit"
                     disabled={disabled}
                     >

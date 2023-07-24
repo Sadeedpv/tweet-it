@@ -64,7 +64,7 @@ export default ({id}:ID) => {
                 />
                 <p className={`font-bold ${input.length > 300? 'text-red-700':'text-black'}`}>{input.length}/300</p>
                 <button 
-                className={`cursor-pointer text-base rounded-md px-5 py-2 text-white ${disabled?'bg-slate-500':'bg-teal-600 hover:bg-teal-700'} font-normal lg:w-1/4`}
+                className={`button ${disabled?'bg-slate-500':'bg-teal-600 hover:bg-teal-700'} lg:w-1/4`}
                 type="submit"
                 disabled={disabled}>
                     Comment

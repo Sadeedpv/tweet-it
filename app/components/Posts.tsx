@@ -10,35 +10,6 @@ import { Post } from '@prisma/client';
 import Link from 'next/link';
 import { Like, Postprops } from '@/constants/types';
 
-// Interface for posts
-// type Posts = {
-//     id:string,
-//     title:string,
-//     userId:string,
-//     likes:{
-//         id:string,
-//         userId:string,
-//         postId:string
-//     }[],
-//     comments:{
-//         id:string,
-//         text:string,
-//         userId:string,
-//         postId:string,
-//     }[],
-//     user?:{
-//         id:string,
-//         name:string,
-//         image:string,
-//         email:string
-//     }
-// }
-
-// type Like = {
-//     id:string,
-//     userId:string,
-//     postId:string
-// }
 
 const Posts =  ({posts}:{posts:Postprops}) => {
     console.log(posts)
@@ -72,24 +43,26 @@ const Posts =  ({posts}:{posts:Postprops}) => {
     }
 
     return (
-        <div className="flex flex-col bg-white my-8 py-8 rounded-md justify-center pl-2 lg:pl-6">
-            <div className="flex gap-5 items-center">
+        <div className="upperContainer">
+            <div className="innerContainer gap-3">
             <Image src={posts?.user?.image || ''} alt="GitHub user profile"
                     height={64} width={64} priority
-                    className="w-12 rounded-full ml-3 cursor-pointer"
+                    className="image"
                         />
-            <p className="font-bold text-lg">{posts?.user?.name}</p>
+            <p className="title text-lg">{posts?.user?.name}</p>
             </div>
-            <div className=' text-left py-5 text-xl break-words p-4'>
+            <div className='content text-xl'>
                 {posts.title}
             </div>
-            <div className="flex gap-5 items-center pl-4">
-                <p className='font-bold text-slate-700'><Link href={`/Posts/${posts.id}`}> {posts.comments.length} Comments</Link></p>
+            <div className="bottomContainer">
+                <p className='subText'>
+                    <Link href={`/Posts/${posts.id}`}> {posts.comments.length} {posts.comments.length > 1?'Comments':'Comment'}</Link>
+                </p>
                 <div className='flex items-center gap-1'><BsBalloonHeartFill 
                 size={22} 
                 className={`cursor-pointer ${love}`}
                 onClick={handleLove}
-                /> <p className='font-bold text-slate-700'>{posts.likes?.length} {posts.likes.length > 1?'Likes':'Like'}</p></div>
+                /> <p className='subText'>{posts.likes?.length} {posts.likes.length > 1?'Likes':'Like'}</p></div>
             </div>
 
         </div>

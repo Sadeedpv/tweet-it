@@ -1,4 +1,4 @@
-import './globals.css'
+import "./globals.css";
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 import Provider from './components/Provider'
