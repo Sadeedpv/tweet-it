@@ -23,7 +23,7 @@ const fetcher = async (url:string) =>{
 export default ({params}:Props) => {
 
     const { data: post, error } = useSWR(`${baseUrl}/api/getPosts?id=${params.id}`, fetcher, {
-        refreshInterval:5000
+        refreshInterval:1000
       });
     if (error){
         toast.error("Error loading post")!

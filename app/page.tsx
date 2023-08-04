@@ -16,7 +16,7 @@ const fetcher = async (url:string) =>{
 
 export default function Home() {
 const { data: posts, error } = useSWR(`/api/addPosts`, fetcher, {
-  refreshInterval:5000
+  refreshInterval:1000
 });
 console.log(ASCII_text)
 
